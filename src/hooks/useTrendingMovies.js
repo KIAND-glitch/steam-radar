@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { getTrendingMovies } from "../services/tmdb";
 
-const useTrendingMovies = () => {
+const useTrendingMovies = (timeWindow) => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [trendingError, setTrendingError] = useState("");
   const [trendingLoading, setTrendingLoading] = useState(true);
@@ -11,7 +11,7 @@ const useTrendingMovies = () => {
     const fetchTrendingMovies = async () => {
       setTrendingLoading(true);
       try {
-        const data = await getTrendingMovies();
+        const data = await getTrendingMovies(timeWindow);
         if (data && Array.isArray(data.results)) {
           setTrendingMovies(data.results);
         } else {
@@ -26,7 +26,7 @@ const useTrendingMovies = () => {
     };
 
     fetchTrendingMovies();
-  }, []);
+  }, [timeWindow]);
 
   return { trendingMovies, trendingError, trendingLoading };
 };

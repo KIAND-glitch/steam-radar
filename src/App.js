@@ -12,9 +12,10 @@ function App() {
   // States for query and active tab
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState("trending"); // "trending" or "search"
+  const [trendingTimeWindow, setTrendingTimeWindow] = useState("day"); // "day" or "week"
 
   // Custom hooks for fetching movies
-  const { trendingMovies, trendingError, trendingLoading } = useTrendingMovies();
+  const { trendingMovies, trendingError, trendingLoading } = useTrendingMovies(trendingTimeWindow);
   const { searchMoviesResults, searchError, searchLoading } = useSearchMovies(query);
 
   // Handle search trigger
@@ -37,7 +38,7 @@ function App() {
       <h1 className="text-3xl font-bold mb-4 text-center">🎬 StreamRadar</h1>
 
       {/* Tabs for switching between Trending and Search */}
-      <Tabs activeTab={activeTab} handleTabChange={handleTabChange} />
+      <Tabs tabNames={['trending', 'search']} activeTab={activeTab} handleTabChange={handleTabChange} />
 
       {/* Search Bar for the search tab */}
       {activeTab === "search" && (
@@ -52,13 +53,30 @@ function App() {
         searchError={searchError}
         trendingError={trendingError}
       />
+      {/* Render trending time tabs */}
+      {activeTab === "trending" && (
+        <div className="flex justify-center mb-4">
+          <button
+            onClick={() => {
+              setTrendingTimeWindow("day")
+            }}
+            className={`px-4 py-2 rounded ${trendingTimeWindow === "day" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+          >
+            Day
+          </button>
+          <button
+            onClick={() => {
+              setTrendingTimeWindow("week")
+            }}
+            className={`px-4 py-2 rounded ${trendingTimeWindow === "week" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+          >
+            Week
+          </button>
+        </div>
+      )}
 
       {/* Render movies */}
-      <MovieList
-        activeTab={activeTab}
-        searchMoviesResults={searchMoviesResults}
-        trendingMovies={trendingMovies}
-      />
+      <MovieList movies={activeTab === "search" ? searchMoviesResults : trendingMovies}/>
     </div>
   );
 }

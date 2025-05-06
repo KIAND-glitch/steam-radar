@@ -1,21 +1,18 @@
 // components/Tabs.js
 import React from 'react';
 
-const Tabs = ({ activeTab, handleTabChange }) => {
+const Tabs = ({ tabNames, activeTab, handleTabChange }) => {
   return (
-    <div className="flex justify-center gap-4 mb-4">
-      <button
-        className={`px-4 py-2 rounded ${activeTab === "trending" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
-        onClick={() => handleTabChange("trending")}
-      >
-        Trending
-      </button>
-      <button
-        className={`px-4 py-2 rounded ${activeTab === "search" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
-        onClick={() => handleTabChange("search")}
-      >
-        Search
-      </button>
+    <div className="flex justify-center space-x-4 mb-4">
+      {tabNames.map((tab) => (
+        <button
+          key={tab}
+          className={`px-4 py-2 rounded ${activeTab === tab ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+          onClick={() => handleTabChange(tab)}
+        >
+          {tab.charAt(0).toUpperCase() + tab.slice(1)}
+        </button>
+      ))}
     </div>
   );
 };
