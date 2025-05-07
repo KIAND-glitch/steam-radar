@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from "react-oidc-context";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const oidcConfig = {
+  authority: "https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_Uxhrcakks",
+  client_id: "42pg35gdbfjmc3vuqqf8n29t3t",
+  redirect_uri: "http://localhost:3000/callback",
+  response_type: "code",
+  scope: "openid email phone",
+  post_logout_redirect_uri: "http://localhost:3000/",
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider {...oidcConfig}>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );
 
