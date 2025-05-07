@@ -1,6 +1,10 @@
 // components/SearchBar.js
 
 const SearchBar = ({ query, setQuery, handleSearch }) => {
+    const handleInputChange = (e) => {
+        setQuery(e.target.value);
+    };
+
     return (
       <div className="flex items-center justify-center gap-2 mb-6">
         <input
@@ -8,7 +12,7 @@ const SearchBar = ({ query, setQuery, handleSearch }) => {
           placeholder="Search movies..."
           className="border p-2 rounded w-full max-w-md"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleInputChange}
         />
         <button
           onClick={handleSearch}
@@ -21,4 +25,3 @@ const SearchBar = ({ query, setQuery, handleSearch }) => {
   };
   
   export default SearchBar;
-  

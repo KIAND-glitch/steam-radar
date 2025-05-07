@@ -1,4 +1,3 @@
-// App.js
 import './App.css';
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
@@ -9,27 +8,34 @@ import MovieList from "./components/MovieList";              // Movie list rende
 import LoadingAndError from "./components/LoadingAndError";  // Loading and Error handling
 
 function App() {
-  // States for query and active tab
+  // States for query, active tab, and search trigger
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState("trending"); // "trending" or "search"
   const [trendingTimeWindow, setTrendingTimeWindow] = useState("day"); // "day" or "week"
+  const [shouldSearch, setShouldSearch] = useState(false); // Controls when to search
 
   // Custom hooks for fetching movies
   const { trendingMovies, trendingError, trendingLoading } = useTrendingMovies(trendingTimeWindow);
-  const { searchMoviesResults, searchError, searchLoading } = useSearchMovies(query);
+  const { searchMoviesResults, searchError, searchLoading } = useSearchMovies(query, shouldSearch);
 
   // Handle search trigger
   const handleSearch = () => {
-    if (query) {
-      setActiveTab("search"); // Switch to search tab when the user initiates a search
+    if (query.trim()) {
+      setActiveTab("search");
+      setShouldSearch(true);
+  
+      // Reset after a short delay so it can be triggered again if needed
+      setTimeout(() => setShouldSearch(false), 100); 
     }
   };
+  
 
   // Handle tab switch
   const handleTabChange = (tab) => {
     setActiveTab(tab);
     if (tab === "trending") {
       setQuery(""); // Clear query when switching to trending
+      setShouldSearch(false); // Reset search trigger
     }
   };
 
