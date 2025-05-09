@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Silent Renew</title>
+  </head>
+  <body>
+    <script>
+      // Required by oidc-client-ts
+      window.addEventListener("load", function () {
+        window.opener?.postMessage("oidc-silent-renew", window.location.origin);
+      });
+    </script>
+  </body>
+</html>

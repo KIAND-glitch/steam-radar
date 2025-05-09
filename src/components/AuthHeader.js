@@ -14,6 +14,8 @@ const AuthHeader = () => {
   if (auth.isLoading) return <div>Loading auth...</div>;
   if (auth.error) return <div>Error: {auth.error.message}</div>;
 
+  console.log("Auth state:", auth);
+
   return (
     <div className="flex justify-between items-center mb-4">
       <h1 className="text-3xl font-bold text-center">🎬 StreamRadar</h1>

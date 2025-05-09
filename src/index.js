@@ -12,6 +12,13 @@ const oidcConfig = {
   response_type: "code",
   scope: "openid email phone",
   post_logout_redirect_uri: "http://localhost:3000/",
+
+    // 🔐 Silent renew settings
+    automaticSilentRenew: true,
+    loadUserInfo: true,
+  
+    // ⬇️ Add this for silent renew
+    silent_redirect_uri: "http://localhost:3000/silent-renew.html",
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
