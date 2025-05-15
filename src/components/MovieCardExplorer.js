@@ -1,7 +1,7 @@
 // components/MovieCard.js
-import { useAuth } from "react-oidc-context";
 import { addToWatchlist } from "../services/watchlist"; // adjust path if needed
 import { useState } from "react";
+import { useAuth } from "../auth/authContext";
 
 const MovieCard = ({ movie }) => {
   const auth = useAuth();

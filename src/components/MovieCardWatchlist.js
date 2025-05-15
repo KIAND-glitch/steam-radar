@@ -1,5 +1,5 @@
 // components/MovieCard.js
-import { useAuth } from "react-oidc-context";
+import { useAuth } from "../auth/authContext";
 import { addToWatchlist, removeFromWatchlist } from "../services/watchlist";
 import { useState } from "react";
 

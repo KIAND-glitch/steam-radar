@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "react-oidc-context";
+import { useAuth } from "../auth/authContext";
 import useWatchlistMovies from "../hooks/useWatchlistMovies";
 import MovieCard from "../components/MovieCardWatchlist";
 import LoadingAndError from "../components/LoadingAndError";

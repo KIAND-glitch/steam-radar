@@ -1,12 +1,12 @@
-import { Navigate } from 'react-router-dom';
-import { useAuth } from "react-oidc-context";
+// import { Navigate } from 'react-router-dom';
+// import { useAuth } from "react-oidc-context";
 
-export default function ProtectedRoute({ children }) {
-  const auth = useAuth();
+// export default function ProtectedRoute({ children }) {
+//   const auth = useAuth();
 
-    if (!auth.isAuthenticated) {
-        auth.signinRedirect();
-        return null;
-    }
-  return children;
-}
+//     if (!auth.isAuthenticated) {
+//         auth.signinRedirect();
+//         return null;
+//     }
+//   return children;
+// }

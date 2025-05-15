@@ -2,7 +2,8 @@
 const BASE_URL = 'https://8nrjccs6kh.execute-api.ap-southeast-2.amazonaws.com/dev/watchlist';
 
 export const addToWatchlist = async (auth, movie) => {
-    const token = auth.user?.id_token;
+    console.log("auth", auth);
+    const token = auth.tokens.IdToken;
 
     if (!auth) throw new Error("Auth object is required");
     if (!token) throw new Error("User is not authenticated");
@@ -34,7 +35,7 @@ export const addToWatchlist = async (auth, movie) => {
 };
 
 export const getWatchlist = async (auth) => {
-    const token = auth.user?.id_token;
+    const token = auth.tokens.IdToken;
 
     if (!auth) throw new Error("Auth object is required");
     if (!token) throw new Error("User is not authenticated");
@@ -57,7 +58,8 @@ export const getWatchlist = async (auth) => {
 };
 
 export const removeFromWatchlist = async (auth, movieId) => {
-    const token = auth.user?.id_token;
+    console.log("auth", auth);
+    const token = auth.tokens.IdToken;
   
     if (!auth) throw new Error("Auth object is required");
     if (!token) throw new Error("User is not authenticated");
