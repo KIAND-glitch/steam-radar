@@ -1,11 +1,11 @@
-// components/MovieExplorer.js
+// pages/MovieExplorer.js
 import { useState } from "react";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 import useTrendingMovies from "../hooks/useTrendingMovies";
 import useSearchMovies from "../hooks/useSearchMovies";
-import Tabs from "./Tabs";
-import MovieList from "./MovieList";
-import LoadingAndError from "./LoadingAndError";
+import Tabs from "../components/Tabs";
+import MovieList from "../components/MovieList";
+import LoadingAndError from "../components/LoadingAndError";
 
 const MovieExplorer = () => {
   const [query, setQuery] = useState("");

@@ -1,6 +1,6 @@
 // components/MovieList.js
 import React from 'react';
-import MovieCard from './MovieCard';
+import MovieCard from './MovieCardExplorer';
 
 const MovieList = ({ movies, activeTab, searchMoviesResults, trendingMovies }) => {
   return (
