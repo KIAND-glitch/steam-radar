@@ -4,6 +4,7 @@ import HomePage from '../pages/index';
 import MovieExplorer from '../pages/MovieExplorer';
 import Watchlist from '../pages/WatchlistPage';
 import TrendingAUPage from '../pages/trendingAU';
+import MoviePage from '../pages/MoviePage';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import { useAuth } from '../auth/authContext'; // Import the context to check if the user is authenticated
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute
         element={<MovieExplorer />} // Only accessible if the user is logged in
+      />
+    ),
+  },
+  {
+    path: '/movie/:id',
+    element: (
+      <ProtectedRoute
+        element={<MoviePage />}
       />
     ),
   },

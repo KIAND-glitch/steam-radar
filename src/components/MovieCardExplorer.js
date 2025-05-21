@@ -2,12 +2,15 @@
 import { addToWatchlist } from "../services/watchlist"; // adjust path if needed
 import { useState } from "react";
 import { useAuth } from "../auth/authContext";
+import { useNavigate } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
   const auth = useAuth();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleAddToWatchlist = async () => {
     setLoading(true);
@@ -24,8 +27,12 @@ const MovieCard = ({ movie }) => {
     }
   };
 
+  const handleMovieClick = () => {
+    navigate(`/movie/${movie.id}`);
+  };
+
   return (
-    <div className="bg-white shadow-md rounded p-2" data-movie-id={movie.id}>
+    <div className="bg-white shadow-md rounded p-2" data-movie-id={movie.id} onClick={handleMovieClick}>
       <div className="relative top-2 right-2 flex justify-end">
         <button
           className="p-1 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none"
