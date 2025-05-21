@@ -22,7 +22,7 @@ const AuthHeader = () => {
       console.error("Token decoding failed", e);
     }
   }
-
+  console.log('auth', tokens);
   if (loading) return <div>Loading auth...</div>;
 
   return (
@@ -32,7 +32,12 @@ const AuthHeader = () => {
       <div>
         {tokens ? (
           <div className="flex items-center gap-2">
-            <span className="text-sm">👤 {userEmail || "Logged In"}</span>
+            <button
+              className="bg-green-500 text-white px-3 py-1 rounded"
+              onClick={() => (window.location.href = "/watchlist")}
+            >
+              View Watchlist
+            </button>
             <button
               className="bg-red-500 text-white px-3 py-1 rounded"
               onClick={handleLogout}

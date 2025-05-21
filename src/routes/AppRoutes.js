@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter, useNavigate, useLocation } from 'r
 import HomePage from '../pages/index';
 import MovieExplorer from '../pages/MovieExplorer';
 import Watchlist from '../pages/WatchlistPage';
+import TrendingAUPage from '../pages/trendingAU';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import { useAuth } from '../auth/authContext'; // Import the context to check if the user is authenticated
@@ -15,7 +16,8 @@ const ProtectedRoute = ({ element }) => {
 
   // If the user is not authenticated, redirect to login
   if (!user) {
-    navigate('/login', { state: { from: location } });
+    console.log('User not authenticated, redirecting to login');
+    window.location.href = '/login';
     return null;
   }
 
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute
         element={<MovieExplorer />} // Only accessible if the user is logged in
+      />
+    ),
+  },
+  {
+    path: '/trendingAU',
+    element: (
+      <ProtectedRoute
+        element={<TrendingAUPage />} // Only accessible if the user is logged in
       />
     ),
   },
